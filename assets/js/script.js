@@ -29,7 +29,10 @@ function runGame(gameType) {
     if (gameType === "addition") {
         displayAdditionQuestion(num1, num2);
     } else if(gameType === "multiply"){
-        displayMultiplyQuestion(num1,num2)
+        displayMultiplyQuestion(num1,num2);
+    }
+    else if (gameType === "subtract") {
+        displaySubtractQuestion(num1, num2);
     }
     else {
         alert(`unknown game type: ${gameType}`);
@@ -72,6 +75,8 @@ if(operator === "+"){
 } else if(operator === 'x'){
     return [operand1 * operand2, "multiply"]
 }
+else if (operator === '-')
+return [operand1 - operand2, "subtract"]
 else {
     alert(`Unimplemented operator ${operator}`);
     throw `Unimplemented operator ${operator}.Aborting`;
@@ -85,7 +90,7 @@ let oldScore = parseInt(document.getElementById('score').innerText);
 document.getElementById('score').innerText = ++oldScore;
 }
 /**
- * Gtes the current tall of incorrect answers from the dom and increments it by 1.
+ * Gets the current tall of incorrect answers from the dom and increments it by 1.
  */
 function incrementWrongAnswer() {
     let oldScore = parseInt(document.getElementById('incorrect').innerText);
@@ -99,8 +104,11 @@ function displayAdditionQuestion(operand1, operand2) {
 
 }
 
-function displaySubtractQuestion() {
+function displaySubtractQuestion(operand1, operand2) {
 
+    document.getElementById("operand1").textContent = operand1 > operand2 ? operand1 : operand2;
+    document.getElementById("operand2").textContent = operand1 > operand2 ? operand2 : operand1;
+    document.getElementById('operator').textContent = '-';
 }
 
 function displayMultiplyQuestion(operand1, operand2) {
